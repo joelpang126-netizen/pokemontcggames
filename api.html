@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokédex – Pokémon TCG</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="home.html">⚡ Pokémon TCG</a>
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                <li class="nav-item"><a class="nav-link" href="decks.html">Decks</a></li>
+                <li class="nav-item"><a class="nav-link" href="howtoplay.html">How to Play</a></li>
+                <li class="nav-item"><a class="nav-link active" href="api.html">Pokédex</a></li>
+                <li class="nav-item"><a class="nav-link" href="videogames.html">Video Games</a></li>
+                <li class="nav-item"><span class="nav-link trainer-name" id="navTrainerName"></span></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-header text-center">
+        <h1 class="section-title">🔎 Live Pokédex</h1>
+        <p>Search any Pokémon and get live data straight from PokéAPI!</p>
+    </div>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="input-group mb-3">
+                    <input type="text" id="searchInput" class="form-control form-control-lg"
+                        placeholder="Enter Pokémon name (e.g. pikachu)">
+                    <button class="btn btn-warning fw-bold px-4" id="searchBtn">Search</button>
+                </div>
+                <p id="lastSearchedMsg" class="text-center"
+                    style="color: rgba(255,255,255,0.6); font-size:0.85rem;"></p>
+            </div>
+        </div>
+
+        <div id="loadingSpinner" class="text-center mt-4" style="display:none;">
+            <div class="spinner-border text-warning" role="status"></div>
+            <p class="text-white mt-2">Fetching Pokémon data...</p>
+        </div>
+
+        <div id="errorMsg" class="text-center text-warning fw-bold mt-4" style="display:none;">
+            ⚠️ Pokémon not found. Please check the name and try again.
+        </div>
+
+        <div id="resultArea" class="row justify-content-center mt-4"></div>
+    </div>
+
+    <footer class="mt-5">
+        <p>© 2026 Pokémon TCG Website (UCCD2323)</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            function searchPokemon() {
+                const name = $("#searchInput").val().trim().toLowerCase();
+                if (!name) {
+                    alert("Please enter a Pokémon name.");
+                    return;
+                }
+
+                $("#resultArea").empty();
+                $("#errorMsg").hide();
+                $("#loadingSpinner").show();
+
+                $.ajax({
+                    url: "https://pokeapi.co/api/v2/pokemon/" + name,
+                    method: "GET",
+                    success: function (data) {
+                        $("#loadingSpinner").hide();
+
+                        const pokeName      = data.name.charAt(0).toUpperCase() + data.name.slice(1);
+                        const pokeID        = data.id;
+                        const pokeImg       = data.sprites.other["official-artwork"].front_default;
+                        const pokeTypes     = data.types.map(t =>
+                            t.type.name.charAt(0).toUpperCase() + t.type.name.slice(1)
+                        ).join(", ");
+                        const pokeHP        = data.stats[0].base_stat;
+                        const pokeAtk       = data.stats[1].base_stat;
+                        const pokeDef       = data.stats[2].base_stat;
+                        const pokeSpAtk     = data.stats[3].base_stat;
+                        const pokeSpDef     = data.stats[4].base_stat;
+                        const pokeSpd       = data.stats[5].base_stat;
+                        const pokeAbilities = data.abilities.map(a =>
+                            a.ability.name.charAt(0).toUpperCase() + a.ability.name.slice(1)
+                        ).join(", ");
+                        const pokeHeight    = (data.height / 10) + " m";
+                        const pokeWeight    = (data.weight / 10) + " kg";
+
+                        localStorage.setItem("lastSearched", pokeName);
+                        sessionStorage.setItem("currentSearch", pokeName);
+                        $("#lastSearchedMsg").text("🕐 Last searched: " + pokeName);
+
+                        function statBar(value) {
+                            const pct = Math.min((value / 255) * 100, 100).toFixed(0);
+                            let color = "#e74c3c";
+                            if (value >= 80)  color = "#f4d03f";
+                            if (value >= 120) color = "#2ecc71";
+                            return `
+                                <div style="display:flex; align-items:center; gap:10px; margin-bottom:6px;">
+                                    <div style="flex:1; background:rgba(0,0,0,0.2); border-radius:50px; height:10px;">
+                                        <div style="width:${pct}%; background:${color}; height:10px; border-radius:50px;"></div>
+                                    </div>
+                                    <span style="min-width:30px; font-weight:700; color:white;">${value}</span>
+                                </div>`;
+                        }
+
+                        const cardHTML = `
+                            <div class="col-md-6 col-lg-5">
+                                <div style="
+                                    background: rgba(255,255,255,0.08);
+                                    border: 1px solid rgba(255,203,5,0.4);
+                                    border-radius: 24px;
+                                    padding: 30px;
+                                    text-align: center;
+                                    color: white;
+                                ">
+                                    <p style="color:rgba(255,255,255,0.5); font-size:0.85rem; margin-bottom:4px;">
+                                        #${String(pokeID).padStart(4, "0")}
+                                    </p>
+                                    <h3 style="font-family:'Press Start 2P', monospace; font-size:1rem;
+                                        color:var(--poke-yellow); margin-bottom:16px;">${pokeName}</h3>
+                                    <img src="${pokeImg}" alt="${pokeName}"
+                                        style="width:200px; height:200px; object-fit:contain;">
+                                    <div style="margin:16px 0;">
+                                        <span class="type-badge">${pokeTypes}</span>
+                                    </div>
+                                    <div style="display:flex; justify-content:center; gap:24px;
+                                        margin-bottom:20px; font-size:0.85rem; color:rgba(255,255,255,0.7);">
+                                        <span>📏 ${pokeHeight}</span>
+                                        <span>⚖️ ${pokeWeight}</span>
+                                    </div>
+                                    <p style="font-size:0.85rem; color:rgba(255,255,255,0.7); margin-bottom:20px;">
+                                        <strong style="color:white;">Abilities:</strong> ${pokeAbilities}
+                                    </p>
+                                    <hr style="border-color:rgba(255,255,255,0.15);">
+                                    <div style="text-align:left; margin-top:16px;">
+                                        <p style="font-family:'Press Start 2P', monospace; font-size:0.6rem;
+                                            color:var(--poke-yellow); margin-bottom:14px;">BASE STATS</p>
+                                        <p style="font-size:0.8rem; margin-bottom:4px;">HP</p>${statBar(pokeHP)}
+                                        <p style="font-size:0.8rem; margin-bottom:4px;">Attack</p>${statBar(pokeAtk)}
+                                        <p style="font-size:0.8rem; margin-bottom:4px;">Defense</p>${statBar(pokeDef)}
+                                        <p style="font-size:0.8rem; margin-bottom:4px;">Sp. Attack</p>${statBar(pokeSpAtk)}
+                                        <p style="font-size:0.8rem; margin-bottom:4px;">Sp. Defense</p>${statBar(pokeSpDef)}
+                                        <p style="font-size:0.8rem; margin-bottom:4px;">Speed</p>${statBar(pokeSpd)}
+                                    </div>
+                                </div>
+                            </div>`;
+
+                        $("#resultArea").html(cardHTML);
+                    },
+                    error: function () {
+                        $("#loadingSpinner").hide();
+                        $("#errorMsg").show();
+                    }
+                });
+            }
+
+            $("#searchBtn").click(function () { searchPokemon(); });
+            $("#searchInput").keypress(function (e) {
+                if (e.which === 13) searchPokemon();
+            });
+
+            const lastSearched = localStorage.getItem("lastSearched");
+            if (lastSearched) {
+                $("#lastSearchedMsg").text("🕐 Last searched: " + lastSearched);
+                $("#searchInput").val(lastSearched.toLowerCase());
+                searchPokemon();
+            }
+        });
+    </script>
+
+</body>
+</html>

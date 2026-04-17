@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Play – Pokémon TCG</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="home.html">⚡ Pokémon TCG</a>
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                <li class="nav-item"><a class="nav-link" href="decks.html">Decks</a></li>
+                <li class="nav-item"><a class="nav-link active" href="howtoplay.html">How to Play</a></li>
+                <li class="nav-item"><a class="nav-link" href="api.html">Pokédex</a></li>
+                <li class="nav-item"><a class="nav-link" href="videogames.html">Video Games</a></li>
+                <li class="nav-item"><span class="nav-link trainer-name" id="navTrainerName"></span></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-header text-center">
+        <h1 class="section-title">📖 How to Play</h1>
+        <p>New to Pokémon TCG? Learn the basics and start your journey as a Trainer!</p>
+        <div id="progressMsg" class="favourite-banner" style="display:none;"></div>
+    </div>
+
+    <div class="container mt-5 text-center">
+        <h3 class="mt-4" style="font-family: 'Press Start 2P', monospace; font-size: 0.85rem; color: var(--poke-yellow); line-height: 1.8;">
+            🎬 Watch Tutorial
+        </h3>
+        <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem; margin-bottom: 20px;">
+            Watch this video to get a quick overview of how the game works before reading the steps below.
+        </p>
+        <div style="display: inline-block; border-radius: 16px; overflow: hidden; box-shadow: 0 8px 30px rgba(0,0,0,0.6); border: 2px solid rgba(255,203,5,0.3);">
+            <video width="640" height="360" controls style="display: block;">
+                <source src="image/tutorial.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <div class="container mt-5 text-center">
+        <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem; margin-bottom: 10px;">
+            📌 Click <strong>"Mark as Read"</strong> on each step to track your progress!
+        </p>
+        <div style="
+            background: rgba(255,255,255,0.1);
+            border-radius: 50px;
+            height: 14px;
+            max-width: 500px;
+            margin: 0 auto 30px;
+            overflow: hidden;
+        ">
+            <div id="progressFill" style="
+                height: 100%;
+                background: linear-gradient(90deg, var(--poke-yellow), #ffaa00);
+                border-radius: 50px;
+                width: 0%;
+                transition: width 0.4s ease;
+            "></div>
+        </div>
+    </div>
+
+    <div class="container section">
+        <div class="row g-4">
+
+            <div class="col-12">
+                <div class="step-card" id="step1">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h4 class="step-title">🃏 Set Up Your Deck</h4>
+                        <p>Each player needs a deck of exactly <strong>60 cards</strong>. Your deck can include Pokémon cards, Trainer cards, and Energy cards. Shuffle your deck thoroughly before the game begins.</p>
+                        <ul>
+                            <li>Draw <strong>7 cards</strong> as your starting hand.</li>
+                            <li>Place <strong>6 Prize Cards</strong> face down — you earn one each time you knock out an opponent's Pokémon.</li>
+                            <li>Place one Basic Pokémon face down as your <strong>Active Pokémon</strong>.</li>
+                            <li>Place up to 5 Basic Pokémon on your <strong>Bench</strong>.</li>
+                        </ul>
+                        <button class="step-done-btn" data-step="1">✅ Mark as Read</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="step-card" id="step2">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h4 class="step-title">🔄 Your Turn Structure</h4>
+                        <p>Each turn follows a set order. You must complete each phase before moving on to the next.</p>
+                        <ul>
+                            <li><strong>Draw Phase:</strong> Draw one card from the top of your deck.</li>
+                            <li><strong>Main Phase:</strong> Play Trainer cards, attach one Energy card, evolve Pokémon, or place Basic Pokémon on your Bench.</li>
+                            <li><strong>Attack Phase:</strong> Use your Active Pokémon to attack. Your turn ends after attacking.</li>
+                        </ul>
+                        <button class="step-done-btn" data-step="2">✅ Mark as Read</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="step-card" id="step3">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h4 class="step-title">⚡ Attaching Energy</h4>
+                        <p>Pokémon need Energy cards to use their attacks. You may attach <strong>one Energy card per turn</strong> from your hand to any of your Pokémon.</p>
+                        <ul>
+                            <li>Each attack has an Energy cost shown on the card.</li>
+                            <li>Energy types must match unless the attack accepts <strong>Colorless Energy</strong>.</li>
+                            <li>Energy stays on your Pokémon until it is knocked out or removed by a card effect.</li>
+                        </ul>
+                        <button class="step-done-btn" data-step="3">✅ Mark as Read</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="step-card" id="step4">
+                    <div class="step-number">04</div>
+                    <div class="step-content">
+                        <h4 class="step-title">⚔️ Attacking & Damage</h4>
+                        <p>When you attack, apply the damage listed on the attack to your opponent's Active Pokémon. Some attacks also have special effects!</p>
+                        <ul>
+                            <li><strong>Weakness:</strong> If the defending Pokémon is weak to your attack type, multiply damage by ×2.</li>
+                            <li><strong>Resistance:</strong> Some Pokémon resist certain types — subtract 30 from the damage.</li>
+                            <li>Place <strong>damage counters</strong> (10 damage each) on the defending Pokémon.</li>
+                            <li>When a Pokémon's HP reaches 0, it is <strong>Knocked Out</strong>.</li>
+                        </ul>
+                        <button class="step-done-btn" data-step="4">✅ Mark as Read</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="step-card" id="step5">
+                    <div class="step-number">05</div>
+                    <div class="step-content">
+                        <h4 class="step-title">🏆 Winning the Game</h4>
+                        <p>There are three ways to win a game of Pokémon TCG:</p>
+                        <ul>
+                            <li><strong>Collect all 6 Prize Cards</strong> by knocking out your opponent's Pokémon.</li>
+                            <li>Your opponent has <strong>no Pokémon left</strong> on the field or Bench.</li>
+                            <li>Your opponent cannot <strong>draw a card</strong> at the start of their turn.</li>
+                        </ul>
+                        <p>The first player to meet any of these conditions wins the match!</p>
+                        <button class="step-done-btn" data-step="5">✅ Mark as Read</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12">
+                <div class="step-card" id="step6">
+                    <div class="step-number">06</div>
+                    <div class="step-content">
+                        <h4 class="step-title">🌟 Types of Cards</h4>
+                        <p>Understanding the three card types is essential to building a strong deck.</p>
+                        <ul>
+                            <li><strong>Pokémon Cards:</strong> The main fighters. Can be Basic, Stage 1, or Stage 2 (evolved forms).</li>
+                            <li><strong>Trainer Cards:</strong> Items, Supporters, and Stadiums that give powerful one-time or ongoing effects.</li>
+                            <li><strong>Energy Cards:</strong> Power your Pokémon's attacks. Basic Energy can be included in unlimited quantities in your deck.</li>
+                        </ul>
+                        <button class="step-done-btn" data-step="6">✅ Mark as Read</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="why-section">
+        <div class="container section">
+            <h2 class="text-center section-title mb-5">📋 Quick Reference</h2>
+            <div class="row g-4 justify-content-center">
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">🃏</div>
+                        <h5>Deck Size</h5>
+                        <p>Exactly 60 cards per deck. Maximum 4 copies of any single card except Basic Energy.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">🎖️</div>
+                        <h5>Prize Cards</h5>
+                        <p>Take 6 Prize Cards at game start. Draw one each time you knock out an opponent's Pokémon.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h5>Energy Per Turn</h5>
+                        <p>Attach only one Energy card per turn. Choose wisely — the right Energy at the right time wins games.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+         <p>© 2026 Pokémon TCG Website (UCCD2323)</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            const TOTAL_STEPS = 6;
+            let completedSteps = [];
+
+            const savedProgress = localStorage.getItem("howToPlayProgress");
+            if (savedProgress) {
+                completedSteps = JSON.parse(savedProgress);
+                completedSteps.forEach(function (step) {
+                    markStep(step);
+                });
+                updateProgress();
+            }
+
+            const sessionProgress = sessionStorage.getItem("completedSteps");
+            if (sessionProgress) {
+                const sessionSteps = JSON.parse(sessionProgress);
+                sessionSteps.forEach(function (step) {
+                    if (!completedSteps.includes(step)) {
+                        completedSteps.push(step);
+                        markStep(step);
+                    }
+                });
+                updateProgress();
+            }
+
+            $(".step-done-btn").click(function () {
+                const step = parseInt($(this).data("step"));
+
+                if (!completedSteps.includes(step)) {
+                    completedSteps.push(step);
+                    localStorage.setItem("howToPlayProgress", JSON.stringify(completedSteps));
+                    sessionStorage.setItem("completedSteps", JSON.stringify(completedSteps));
+                }
+
+                markStep(step);
+                updateProgress();
+            });
+
+            function markStep(step) {
+                const card = $("#step" + step);
+                card.addClass("step-done");
+                card.find(".step-done-btn").text("✔️ Read!").prop("disabled", true);
+            }
+
+            function updateProgress() {
+                const pct = (completedSteps.length / TOTAL_STEPS) * 100;
+                $("#progressFill").css("width", pct + "%");
+
+                if (completedSteps.length === TOTAL_STEPS) {
+                    const name = getCookie("trainerName") || "Trainer";
+                    $("#progressMsg").text("🎉 Well done, " + name + "! You have completed all steps and are ready to play!").fadeIn();
+                } else {
+                    $("#progressMsg").text("📌 Progress: " + completedSteps.length + " / " + TOTAL_STEPS + " steps completed.").fadeIn();
+                }
+            }
+
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokémon TCG - Home</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
+    <a class="navbar-brand" href="home.html">⚡ Pokémon TCG</a>
+    <ul class="navbar-nav ms-auto align-items-center">
+      <li class="nav-item"><a class="nav-link active" href="home.html">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+      <li class="nav-item"><a class="nav-link" href="decks.html">Decks</a></li>
+      <li class="nav-item"><a class="nav-link" href="howtoplay.html">How to Play</a></li>
+      <li class="nav-item"><a class="nav-link" href="api.html">Pokédex</a></li>
+      <li class="nav-item"><a class="nav-link" href="videogames.html">Video Games</a></li>
+      <li class="nav-item"><span class="nav-link trainer-name" id="navTrainerName"></span></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="intro">
+  <div class="intro-content">
+    <h1 class="intro-title">Welcome to Pokémon<br><span class="highlight">Trading Card Game</span></h1>
+    <p class="intro-text">Collect, trade, and battle with powerful Pokémon cards!</p>
+    <button id="startBtn" class="btn-main">⚡ Start Your Journey</button>
+    <div id="welcomeMsg" class="welcome-banner"></div>
+  </div>
+</section>
+
+<div class="container section">
+  <h2 class="text-center section-title mb-5">✨ Featured Pokémon</h2>
+
+  <div class="carousel slide" id="pokemonCarousel" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#pokemonCarousel" data-bs-slide-to="0" class="active"></button>
+      <button type="button" data-bs-target="#pokemonCarousel" data-bs-slide-to="1"></button>
+      <button type="button" data-bs-target="#pokemonCarousel" data-bs-slide-to="2"></button>
+      <button type="button" data-bs-target="#pokemonCarousel" data-bs-slide-to="3"></button>
+    </div>
+
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="carousel-card">
+          <a href="gallery.html"><img src="image/Pikachu.png" alt="Pikachu" class="carousel-img"></a>
+          <h4 class="mt-3 type-electric">⚡ Pikachu</h4>
+          <p class="type-badge electric">Electric Type</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="carousel-card">
+          <a href="gallery.html"><img src="image/Charmander.png" alt="Charmander" class="carousel-img"></a>
+          <h4 class="mt-3 type-fire">🔥 Charmander</h4>
+          <p class="type-badge fire">Fire Type</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="carousel-card">
+          <a href="gallery.html"><img src="image/Bulbasaur.png" alt="Bulbasaur" class="carousel-img"></a>
+          <h4 class="mt-3 type-grass">🌿 Bulbasaur</h4>
+          <p class="type-badge grass">Grass / Poison Type</p>
+        </div>
+      </div>
+      <div class="carousel-item">
+        <div class="carousel-card">
+          <a href="gallery.html"><img src="image/Squirtle.png" alt="Squirtle" class="carousel-img"></a>
+          <h4 class="mt-3 type-water">💧 Squirtle</h4>
+          <p class="type-badge water">Water Type</p>
+        </div>
+      </div>
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#pokemonCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#pokemonCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+</div>
+
+<div class="why-section">
+  <div class="container section">
+    <h2 class="text-center section-title mb-5">Why Pokémon TCG?</h2>
+    <div class="row g-4 justify-content-center">
+      <div class="col-md-4">
+        <div class="feature-card">
+          <div class="feature-icon">🃏</div>
+          <h5>Collect</h5>
+          <p>Build your collection with hundreds of unique Pokémon cards from every generation.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="feature-card">
+          <div class="feature-icon">⚔️</div>
+          <h5>Battle</h5>
+          <p>Challenge other Trainers in strategic card battles using your best Pokémon decks.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="feature-card">
+          <div class="feature-icon">🔄</div>
+          <h5>Trade</h5>
+          <p>Trade cards with friends and the community to complete your favourite sets.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 Pokémon TCG Website (UCCD2323)</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+
+    const lastVisit = localStorage.getItem("lastVisitDate");
+    const now = new Date().toLocaleString();
+    const trainerName = getCookie("trainerName") || "Trainer";
+
+    if (lastVisit) {
+      $("#welcomeMsg").text("👋 Welcome back, " + trainerName + "! Last visit: " + lastVisit).fadeIn();
+    }
+
+    localStorage.setItem("lastVisitDate", now);
+    localStorage.setItem("visited", "true");
+
+    $("#startBtn").click(function () {
+      if (sessionStorage.getItem("journeyStarted")) {
+        alert("🎮 Your journey is already underway, " + trainerName + "!");
+      } else {
+        sessionStorage.setItem("journeyStarted", "yes");
+        alert("⚡ Let's begin your Pokémon journey, " + trainerName + "!");
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

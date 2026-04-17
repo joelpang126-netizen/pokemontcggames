@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decks – Pokémon TCG</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="home.html">⚡ Pokémon TCG</a>
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                <li class="nav-item"><a class="nav-link active" href="decks.html">Decks</a></li>
+                <li class="nav-item"><a class="nav-link" href="howtoplay.html">How to Play</a></li>
+                <li class="nav-item"><a class="nav-link" href="api.html">Pokédex</a></li>
+                <li class="nav-item"><a class="nav-link" href="videogames.html">Video Games</a></li>
+                <li class="nav-item"><span class="nav-link trainer-name" id="navTrainerName"></span></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-header text-center">
+        <h1 class="section-title">🃏 Pokémon Decks</h1>
+        <p>Explore powerful decks to build and battle with!</p>
+    </div>
+
+    <div class="container section">
+        <h2 class="text-center">Popular Decks</h2>
+
+        <div class="row mt-4">
+
+            <div class="col-md-4">
+                <div class="card p-3 text-dark">
+                    <img src="Image/pikachudeck.jpeg" class="img-fluid rounded mb-2 w-100" alt="Pikachu Deck">
+                    <h4>Pikachu Deck</h4>
+                    <ul> 
+                    <li>Fast and aggressive</li>
+                     <li>Strong early game pressure</li>
+                      <li>Easy to play for beginners</li>
+                       <li>👉 Focus: Speed + quick damage</li>
+                       </ul>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card p-3 text-dark">
+                    <img src="Image/charizarddeck.jpg" class="img-fluid rounded mb-2 mx-auto d-block w-50"
+                        alt="Charizard Deck">
+                    <h4>Charizard Deck</h4>
+                    <ul>
+                   <li>High damage attacks</li>
+                    <li>Can one-hit KO many Pokémon</li>
+                     <li>Very popular in competitive play</li>
+                      <li>👉 Focus: Big power late game</li>
+                      </ul>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card p-3 text-dark">
+                    <img src="Image/blastoisedeck.jpg" class="img-fluid rounded mb-2 w-100" alt="Blastoise Deck">
+                    <h4>Blastoise Deck</h4>
+                    <ul>
+                   <li>High defense and energy acceleration</li>
+                    <li>Strong survivability</li>
+                     <li>👉 Focus: Tank + long game</li>
+                     </ul>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card p-3 text-dark">
+                    <img src="Image/mewvmaxdeck.jpg" class="img-fluid rounded mb-2 w-100" alt="Mew VMAX Deck">
+                    <h4>Mew VMAX Deck</h4>
+                    <ul>
+                        <li>Copies opponent attacks</li>
+                        <li>Very flexible strategy</li>
+                        <li>👉 Focus: Versatility</li>
+                    </ul>
+
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card p-3 text-dark">
+                    <img src="Image/gardevoirdeck.jpg" class="img-fluid rounded mb-2 w-100" alt="Gardevoir ex Deck">
+                    <h4>Gardevoir ex Deck</h4>
+                    <ul>
+                    <li>Energy acceleration + strong psychic attacks</li>
+                    <li>Very consistent deck</li>
+                    <li>👉 Focus: Setup + scaling power</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card p-3 text-dark">
+                    <img src="Image/lugiavstardeck.jpg" class="img-fluid rounded mb-2 w-100" alt="Lugia VSTAR Deck">
+                    <h4>Lugia VSTAR Deck</h4>
+                    <ul>
+                    <li>Strong “Legend” style Pokémon</li>
+                    <li>Big burst damage combos</li>
+                    <li>👉 Focus: Power + combo plays</li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="container mt-4">
+    <h2 class="text-center">🎯 Beginner Deck Recommendation</h2>
+
+    <div class="row mt-3">
+
+<div class="col-md-6">
+    <div class="p-3 text-center" style="
+        background: linear-gradient(135deg, #f9d423, #ff4e50);
+        border-radius: 15px;
+        color: white;
+        transition: 0.3s;
+    " onmouseover="this.style.transform='scale(1.05)'" 
+       onmouseout="this.style.transform='scale(1)'">
+
+        <h4>⚡ Electric + Colorless</h4>
+        <p>Fast attacks and beginner friendly.</p>
+        <button class="btn btn-light select-deck" data-deck="Electric + Colorless">
+            Choose Deck
+        </button>
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div class="p-3 text-center" style="
+        background: linear-gradient(135deg, #ff512f, #dd2476);
+        border-radius: 15px;
+        color: white;
+        transition: 0.3s;
+    " onmouseover="this.style.transform='scale(1.05)'" 
+       onmouseout="this.style.transform='scale(1)'">
+
+        <h4>🔥 Fire + Colorless</h4>
+        <p>High damage and powerful late game.</p>
+        <button class="btn btn-light select-deck" data-deck="Fire + Colorless">
+            Choose Deck
+        </button>
+    </div>
+</div>
+
+<div class="col-md-6 mt-3">
+    <div class="p-3 text-center" style="
+        background: linear-gradient(135deg, #36d1dc, #5b86e5);
+        border-radius: 15px;
+        color: white;
+        transition: 0.3s;
+    " onmouseover="this.style.transform='scale(1.05)'" 
+       onmouseout="this.style.transform='scale(1)'">
+
+        <h4>💧 Water + Colorless</h4>
+        <p>Balanced gameplay with strong defense.</p>
+        <button class="btn btn-light select-deck" data-deck="Water + Colorless">
+            Choose Deck
+        </button>
+    </div>
+</div>
+
+<div class="col-md-6 mt-3">
+    <div class="p-3 text-center" style="
+        background: linear-gradient(135deg, #56ab2f, #a8e063);
+        border-radius: 15px;
+        color: white;
+        transition: 0.3s;
+    " onmouseover="this.style.transform='scale(1.05)'" 
+       onmouseout="this.style.transform='scale(1)'">
+
+        <h4>🌿 Grass + Psychic</h4>
+        <p>Healing and strategic control playstyle.</p>
+        <button class="btn btn-light select-deck" data-deck="Grass + Psychic">
+            Choose Deck
+        </button>
+    </div>
+</div>
+    </div>
+
+    <div class="text-center mt-4">
+        <h5>Your Selected Deck: <span id="selectedDeck">None</span></h5>
+    </div>
+</div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 Pokémon TCG Website (UCCD2323)</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+    $(document).ready(function () {
+
+    let savedDeck = localStorage.getItem("favDeck");
+    if (savedDeck) {
+        $("#selectedDeck").text(savedDeck);
+    }
+
+    $(".select-deck").click(function () {
+        let deck = $(this).data("deck");
+
+        localStorage.setItem("favDeck", deck);
+
+        $("#selectedDeck").text(deck);
+    });
+   
+
+});
+ </script>
+
+</body>
+
+</html>

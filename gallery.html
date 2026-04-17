@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery – Pokémon TCG</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="home.html">⚡ Pokémon TCG</a>
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link active" href="gallery.html">Gallery</a></li>
+                <li class="nav-item"><a class="nav-link" href="decks.html">Decks</a></li>
+                <li class="nav-item"><a class="nav-link" href="howtoplay.html">How to Play</a></li>
+                <li class="nav-item"><a class="nav-link" href="api.html">Pokédex</a></li>
+                <li class="nav-item"><a class="nav-link" href="videogames.html">Video Games</a></li>
+                <li class="nav-item"><span class="nav-link trainer-name" id="navTrainerName"></span></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- PAGE HEADER -->
+    <div class="page-header text-center">
+        <h1 class="section-title">🎴 Pokémon Gallery</h1>
+        <p>Explore your favourite Pokémon. Click the ★ to mark it as your favourite!</p>
+        <!-- FIX: display:none added so banner is hidden until a favourite is selected -->
+        <div id="favouriteMsg" class="favourite-banner" style="display:none;"></div>
+    </div>
+
+    <!-- FILTER BUTTONS -->
+    <div class="container text-center mb-4 mt-4">
+        <div class="filter-group">
+            <button class="filter-btn active" data-type="all">All</button>
+            <button class="filter-btn" data-type="electric">⚡ Electric</button>
+            <button class="filter-btn" data-type="fire">🔥 Fire</button>
+            <button class="filter-btn" data-type="grass">🌿 Grass</button>
+            <button class="filter-btn" data-type="water">💧 Water</button>
+            <button class="filter-btn" data-type="normal">⭐ Normal</button>
+            <button class="filter-btn" data-type="psychic">🔮 Psychic</button>
+            <button class="filter-btn" data-type="ghost">👻 Ghost</button>
+            <button class="filter-btn" data-type="fighting">👊 Fighting</button>
+            <button class="filter-btn" data-type="dragon">🐉 Dragon</button>
+        </div>
+    </div>
+
+    <!-- POKEMON GRID -->
+    <div class="container section">
+        <div class="row g-4" id="pokemonGrid">
+
+            <!-- Pikachu -->
+            <div class="col-6 col-md-4 col-lg-3 pokemon-card-wrap" data-type="electric">
+                <div class="pokemon-info" data-name="Pikachu">
+                    <div class="fav-star" title="Mark as favourite">★</div>
+                    <img src="image/Pikachu.png" alt="Pikachu">
+                    <h5>Pikachu</h5>
+                    <span class="type-badge electric">⚡ Electric</span>
+                    <p class="poke-ability"><strong>Ability:</strong> Static</p>
+                    <p class="poke-desc">Stores electricity in its cheeks and releases powerful electric attacks.</p>
+                </div>
+            </div>
+
+            <!-- Charmander -->
+            <div class="col-6 col-md-4 col-lg-3 pokemon-card-wrap" data-type="fire">
+                <div class="pokemon-info" data-name="Charmander">
+                    <div class="fav-star" title="Mark as favourite">★</div>
+                    <img src="image/Charmander.png" alt="Charmander">
+                    <h5>Charmander</h5>
+                    <span class="type-badge fire">🔥 Fire</span>
+                    <p class="poke-ability"><strong>Ability:</strong> Blaze</p>
+                    <p class="poke-desc">The flame on its tail indicates its emotions — it flares when it is feeling strong.</p>
+                </div>
+            </div>
+
+            <!-- Bulbasaur -->
+            <div class="col-6 col-md-4 col-lg-3 pokemon-card-wrap" data-type="grass">
+                <div class="pokemon-info" data-name="Bulbasaur">
+                    <div class="fav-star" title="Mark as favourite">★</div>
+                    <img src="image/Bulbasaur.png" alt="Bulbasaur">
+                    <h5>Bulbasaur</h5>
+                    <span class="type-badge grass">🌿 Grass</span>
+                    <p class="poke-ability"><strong>Ability:</strong> Overgrow</p>
+                    <p class="poke-desc">A strange seed was planted on its back at birth and has grown with this Pokémon.</p>
+                </div>
+            </div>
+
+            <!-- Squirtle -->
+            <div class="col-6 col-md-4 col-lg-3 pokemon-card-wrap" data-type="water">
+                <div class="pokemon-info" data-name="Squirtle">
+                    <div class="fav-star" title="Mark as favourite">★</div>
+                    <img src="image/Squirtle.png" alt="Squirtle">
+                    <h5>Squirtle</h5>
+                    <span class="type-badge water">💧 Water</span>
+                    <p class="poke-ability"><strong>Ability:</strong> Torrent</p>
+                    <p class="poke-desc">Shoots water at high velocity from its mouth using its hard shell as a shield.</p>
+                </div>
+            </div>
+
+            <!-- Eevee -->
+            <div class="col-6 col-md-4 col-lg-3 pokemon-card-wrap" data-type="normal">
+                <div class="pokemon-info" data-name="Eevee">
+                    <div class="fav-star" title="Mark as favourite">★</div>
+                    <img src="image/Eevee.png" alt="Eevee">
+                    <h5>Eevee</h5>
+                    <span class="type-badge normal">⭐ Normal</span>
+                    <p class="poke-ability"><strong>Ability:</strong> Run Away</p>
+                    <p class="poke-desc">Its genetic makeup is irregular and unstable, allowing it to evolve into many different forms.</p>
+                </div>
+            </div>
+
+            <!-- Mewtwo -->
+            <div class="col-6 col-md-4 col-lg-3 pokemon-card-wrap" data-type="psychic">
+                <div class="pokemon-info" data-name="Mewtwo">
+                    <div class="fav-star" title="Mark as favourite">★</div>
+                    <img src="image/Mewtwo.png" alt="Mewtwo">
+                    <h5>Mewtwo</h5>
+                    <span class="type-badge psychic">🔮 Psychic</span>
+                    <p class="poke-ability"><strong>Ability:</strong> Pressure</p>
+                    <p class="poke-desc">A Pokémon created by genetic manipulation, it is said to have the most savage heart among all Pokémon.</p>
+                </div>
+            </div>
+
+            <!-- Gengar -->
+            <div class="col-6 col-md-4 col-lg-3 pokemon-card-wrap" data-type="ghost">
+                <div class="pokemon-info" data-name="Gengar">
+                    <div class="fav-star" title="Mark as favourite">★</div>
+                    <img src="image/Gengar.png" alt="Gengar">
+                    <h5>Gengar</h5>
+                    <span class="type-badge ghost">👻 Ghost</span>
+                    <p class="poke-ability"><strong>Ability:</strong> Cursed Body</p>
+                    <p class="poke-desc">Hides in shadows and lowers the room's temperature by 10°F wherever it lurks.</p>
+                </div>
+            </div>
+
+            <!-- Jigglypuff -->
+            <div class="col-6 col-md-4 col-lg-3 pokemon-card-wrap" data-type="normal">
+                <div class="pokemon-info" data-name="Jigglypuff">
+                    <div class="fav-star" title="Mark as favourite">★</div>
+                    <img src="image/Jigglypuff.png" alt="Jigglypuff">
+                    <h5>Jigglypuff</h5>
+                    <span class="type-badge normal">⭐ Normal</span>
+                    <p class="poke-ability"><strong>Ability:</strong> Cute Charm</p>
+                    <p class="poke-desc">Sings a lullaby that puts any foe to sleep, then draws on their face with a marker.</p>
+                </div>
+            </div>
+
+            <!-- Charizard -->
+            <div class="col-6 col-md-4 col-lg-3 pokemon-card-wrap" data-type="fire">
+                <div class="pokemon-info" data-name="Charizard">
+                    <div class="fav-star" title="Mark as favourite">★</div>
+                    <img src="image/Charizard.png" alt="Charizard">
+                    <h5>Charizard</h5>
+                    <span class="type-badge fire">🔥 Fire</span>
+                    <p class="poke-ability"><strong>Ability:</strong> Blaze</p>
+                    <p class="poke-desc">Spits fire so hot it melts boulders and soars in the sky seeking powerful opponents.</p>
+                </div>
+            </div>
+
+            <!-- Snorlax -->
+            <div class="col-6 col-md-4 col-lg-3 pokemon-card-wrap" data-type="normal">
+                <div class="pokemon-info" data-name="Snorlax">
+                    <div class="fav-star" title="Mark as favourite">★</div>
+                    <img src="image/Snorlax.png" alt="Snorlax">
+                    <h5>Snorlax</h5>
+                    <span class="type-badge normal">⭐ Normal</span>
+                    <p class="poke-ability"><strong>Ability:</strong> Immunity</p>
+                    <p class="poke-desc">Eats 880 lbs of food daily before falling asleep, content to do almost nothing but eat and slumber.</p>
+                </div>
+            </div>
+
+            <!-- Mew -->
+            <div class="col-6 col-md-4 col-lg-3 pokemon-card-wrap" data-type="psychic">
+                <div class="pokemon-info" data-name="Mew">
+                    <div class="fav-star" title="Mark as favourite">★</div>
+                    <img src="image/Mew.png" alt="Mew">
+                    <h5>Mew</h5>
+                    <span class="type-badge psychic">🔮 Psychic</span>
+                    <p class="poke-ability"><strong>Ability:</strong> Synchronize</p>
+                    <p class="poke-desc">Said to contain the genetic codes of all Pokémon; it can learn any move in existence.</p>
+                </div>
+            </div>
+
+            <!-- Arcanine -->
+            <div class="col-6 col-md-4 col-lg-3 pokemon-card-wrap" data-type="fire">
+                <div class="pokemon-info" data-name="Arcanine">
+                    <div class="fav-star" title="Mark as favourite">★</div>
+                    <img src="image/Arcanine.png" alt="Arcanine">
+                    <h5>Arcanine</h5>
+                    <span class="type-badge fire">🔥 Fire</span>
+                    <p class="poke-ability"><strong>Ability:</strong> Intimidate</p>
+                    <p class="poke-desc">A majestic Pokémon that has been admired since ancient times for its grace and beauty in motion.</p>
+                </div>
+            </div>
+
+            <!-- Gyarados -->
+            <div class="col-6 col-md-4 col-lg-3 pokemon-card-wrap" data-type="water">
+                <div class="pokemon-info" data-name="Gyarados">
+                    <div class="fav-star" title="Mark as favourite">★</div>
+                    <img src="image/Gyarados.png" alt="Gyarados">
+                    <h5>Gyarados</h5>
+                    <span class="type-badge water">💧 Water</span>
+                    <p class="poke-ability"><strong>Ability:</strong> Intimidate</p>
+                    <p class="poke-desc">Once it begins on a rampage, it won't stop until everything is destroyed — towns have fallen before its fury.</p>
+                </div>
+            </div>
+
+            <!-- Blastoise -->
+            <div class="col-6 col-md-4 col-lg-3 pokemon-card-wrap" data-type="water">
+                <div class="pokemon-info" data-name="Blastoise">
+                    <div class="fav-star" title="Mark as favourite">★</div>
+                    <img src="image/Blastoise.png" alt="Blastoise">
+                    <h5>Blastoise</h5>
+                    <span class="type-badge water">💧 Water</span>
+                    <p class="poke-ability"><strong>Ability:</strong> Torrent</p>
+                    <p class="poke-desc">Crushes its foes with powerful jets of water blasted from the cannons on its shell.</p>
+                </div>
+            </div>
+
+            <!-- Psyduck -->
+            <div class="col-6 col-md-4 col-lg-3 pokemon-card-wrap" data-type="water">
+                <div class="pokemon-info" data-name="Psyduck">
+                    <div class="fav-star" title="Mark as favourite">★</div>
+                    <img src="image/Psyduck.png" alt="Psyduck">
+                    <h5>Psyduck</h5>
+                    <span class="type-badge water">💧 Water</span>
+                    <p class="poke-ability"><strong>Ability:</strong> Damp</p>
+                    <p class="poke-desc">Constantly suffers from a headache; when the pain peaks, it unknowingly unleashes psychic energy.</p>
+                </div>
+            </div>
+
+            <!-- Lucario -->
+            <div class="col-6 col-md-4 col-lg-3 pokemon-card-wrap" data-type="fighting">
+                <div class="pokemon-info" data-name="Lucario">
+                    <div class="fav-star" title="Mark as favourite">★</div>
+                    <img src="image/Lucario.png" alt="Lucario">
+                    <h5>Lucario</h5>
+                    <span class="type-badge fighting">👊 Fighting</span>
+                    <p class="poke-ability"><strong>Ability:</strong> Steadfast</p>
+                    <p class="poke-desc">Senses the auras of all living things and can read its opponent's feelings and movements through them.</p>
+                </div>
+            </div>
+
+            <!-- Greninja -->
+            <div class="col-6 col-md-4 col-lg-3 pokemon-card-wrap" data-type="water">
+                <div class="pokemon-info" data-name="Greninja">
+                    <div class="fav-star" title="Mark as favourite">★</div>
+                    <img src="image/Greninja.png" alt="Greninja">
+                    <h5>Greninja</h5>
+                    <span class="type-badge water">💧 Water</span>
+                    <p class="poke-ability"><strong>Ability:</strong> Torrent</p>
+                    <p class="poke-desc">Moves at blinding speed, creating throwing stars from compressed water to slice its enemies.</p>
+                </div>
+            </div>
+
+            <!-- Dragonite -->
+            <div class="col-6 col-md-4 col-lg-3 pokemon-card-wrap" data-type="dragon">
+                <div class="pokemon-info" data-name="Dragonite">
+                    <div class="fav-star" title="Mark as favourite">★</div>
+                    <img src="image/Dragonite.png" alt="Dragonite">
+                    <h5>Dragonite</h5>
+                    <span class="type-badge dragon">🐉 Dragon</span>
+                    <p class="poke-ability"><strong>Ability:</strong> Inner Focus</p>
+                    <p class="poke-desc">Flies faster than any jet and circles the globe in just 16 hours, acting as a guide for lost ships.</p>
+                </div>
+            </div>
+
+            <!-- Ditto -->
+            <div class="col-6 col-md-4 col-lg-3 pokemon-card-wrap" data-type="normal">
+                <div class="pokemon-info" data-name="Ditto">
+                    <div class="fav-star" title="Mark as favourite">★</div>
+                    <img src="image/Ditto.png" alt="Ditto">
+                    <h5>Ditto</h5>
+                    <span class="type-badge normal">⭐ Normal</span>
+                    <p class="poke-ability"><strong>Ability:</strong> Limber</p>
+                    <p class="poke-desc">Transforms into an exact copy of any Pokémon it faces, perfectly replicating its moves and appearance.</p>
+                </div>
+            </div>
+
+            <!-- Ho-Oh -->
+            <div class="col-6 col-md-4 col-lg-3 pokemon-card-wrap" data-type="fire">
+                <div class="pokemon-info" data-name="Ho-Oh">
+                    <div class="fav-star" title="Mark as favourite">★</div>
+                    <img src="image/Ho-Oh.png" alt="Ho-Oh">
+                    <h5>Ho-Oh</h5>
+                    <span class="type-badge fire">🔥 Fire</span>
+                    <p class="poke-ability"><strong>Ability:</strong> Pressure</p>
+                    <p class="poke-desc">Legends say those who witness its shimmering seven-colored wings are promised eternal happiness.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 Pokémon TCG Website (UCCD2323)</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            // LOCAL STORAGE — favourite Pokémon
+            $(".fav-star").click(function () {
+                const name = $(this).closest(".pokemon-info").data("name");
+                localStorage.setItem("favouritePokemon", name);
+                sessionStorage.setItem("lastFavClicked", name);
+                highlightFavourite(name);
+                $("#favouriteMsg").text("⭐ Favourite saved: " + name + "!").fadeIn();
+            });
+
+            const savedFav = localStorage.getItem("favouritePokemon");
+            if (savedFav) {
+                highlightFavourite(savedFav);
+                $("#favouriteMsg").text("⭐ Your favourite: " + savedFav).fadeIn();
+            }
+
+            function highlightFavourite(name) {
+                $(".pokemon-info").removeClass("is-favourite");
+                $(".pokemon-info[data-name='" + name + "']").addClass("is-favourite");
+            }
+
+            // FILTER buttons
+            $(".filter-btn").click(function () {
+                $(".filter-btn").removeClass("active");
+                $(this).addClass("active");
+                const type = $(this).data("type");
+                if (type === "all") {
+                    $(".pokemon-card-wrap").fadeIn(300);
+                } else {
+                    $(".pokemon-card-wrap").each(function () {
+                        if ($(this).data("type") === type) {
+                            $(this).fadeIn(300);
+                        } else {
+                            $(this).fadeOut(200);
+                        }
+                    });
+                }
+            });
+
+        });
+    </script>
+</body>
+</html>
